@@ -40,7 +40,7 @@ def crawler():
 					
 			lastID = res[-1][u'id']
 		else:
-			print "Github kicked me out :( Limit Rate Reset in: %i minutes" % (checkReset())
+			print "Github kicked me out :( Rate limit reset in: %i minutes" % (checkReset())
 			print "Timestamp: %s" % (time.strftime("%d.%m.%Y %H:%M:%S"))
 			
 			time.sleep(60*10)
