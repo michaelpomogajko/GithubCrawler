@@ -14,12 +14,6 @@ class Repo(Model):
 	class Meta:
 		database = db
 
-
-def before_request_handler():
-	db.connect()
-
-def after_request_handler():
-	db.close()
 	
 def insertRepo(repoid, name, url):
 	Repo.create(repoID=repoid, repoName=name, repoURL=url)
@@ -29,4 +23,6 @@ def insertApi(repoid, api):
 	
 def checkLastID():
 	return Repo.select(fn.Max(Repo.repoID)).get().repoID
+	
+print checkLastID()
 	
