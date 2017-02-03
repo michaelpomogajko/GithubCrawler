@@ -4,7 +4,6 @@ import sys
 import json
 import requests
 import time
-import datetime 
 import database
 
 '''
