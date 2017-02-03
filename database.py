@@ -6,7 +6,7 @@ from peewee import *
 db = MySQLDatabase('Repo', user='root', passwd='')
 
 
-class Repos(Model):
+class Repo(Model):
 	repoID = IntegerField()
 	repoName = CharField()
 	repoURL = CharField()
@@ -23,11 +23,11 @@ def after_request_handler():
 	db.close()
 	
 def insertRepo(repoid, name, url):
-	Repos.create(repoID=repoid, repoName=name, repoURL=url)
+	Repo.create(repoID=repoid, repoName=name, repoURL=url)
 		
 def insertApi(repoid, api):
-	Repos.update(repoAPI=api).where(Repos.repoID==repoid).execute()
+	Repo.update(repoAPI=api).where(Repos.repoID==repoid).execute()
 	
 def checkLastID():
-	return Repos.select(fn.Max(Repos.repoID)).get().repoID
+	return Repo.select(fn.Max(Repos.repoID)).get().repoID
 	
