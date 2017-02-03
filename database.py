@@ -24,5 +24,3 @@ def insertApi(repoid, api):
 def checkLastID():
 	return Repo.select(fn.Max(Repo.repoID)).get().repoID
 	
-print checkLastID()
-	
