@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-import peewee
 from peewee import *
 
 db = MySQLDatabase('Repo', user='root', passwd='')
@@ -26,8 +25,10 @@ def insertRepo(repoid, name, url):
 	Repo.create(repoID=repoid, repoName=name, repoURL=url)
 		
 def insertApi(repoid, api):
-	Repo.update(repoAPI=api).where(Repos.repoID==repoid).execute()
+	Repo.update(repoAPI=api).where(Repo.repoID==repoid).execute()
 	
 def checkLastID():
-	return Repo.select(fn.Max(Repos.repoID)).get().repoID
+	return Repo.select(fn.Max(Repo.repoID)).get().repoID
+	
+print checkLastID()
 	
