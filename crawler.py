@@ -5,7 +5,7 @@ import json
 import requests
 import time
 import datetime 
-from database import *
+import database
 
 '''
 Github unsecure API crawler
@@ -26,17 +26,16 @@ def crawler():
 	startID = 0
 	lastID = 0
 	while True:	
-		startID = checkLastID() or 0
+		startID = database.checkLastID() or 0
 		req = githubURL+str(startID)
 		res = requests.get(req).json()
 		
 		#Check for the right Github response
 		if type(res) is list:
-			print "-- Crawling for Repos -- "
 			# Check for private
 			for repo in res:
 				if repo[u'private'] == False:
-					insertRepo(repo[u'id'], repo[u'full_name'], repo[u'html_url'])
+					database.insertRepo(repo[u'id'], repo[u'full_name'], repo[u'html_url'])
 					
 			lastID = res[-1][u'id']
 		else:
