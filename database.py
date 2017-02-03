@@ -24,3 +24,5 @@ def insertApi(repoid, api):
 def checkLastID():
 	return Repo.select(fn.Max(Repo.repoID)).get().repoID
 	
+def getUrlByID(repoid):
+	return Repo.get(Repo.repoID == repoid).repoURL
